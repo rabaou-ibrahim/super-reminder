@@ -3,23 +3,32 @@
 require_once "./models/Project/ProjectManager.php";
 class ProjectsController {
     private $projectManager;
+
+    // Constructor that loads every project
     public function __construct(){
         $this->projectManager = new ProjectManager;
         $this->projectManager->loadProjects();
     }
+
+    // Function that displays the projects view
     public function displayProjects(){
         require "views/user/projects.view.php";
     }
+
+    // Function that displays the warning view
     public function displayLogin(){
         require "views/user/login.view.php";
     }
 
+    // Function that retrieves the projects of the user logged in
     public function getUserProjectsJson(){
         $myProjects = $this->projectManager->getProjectsByUserId($_SESSION['id_user']);
 
         header('Content-Type: application/json');
         echo json_encode($myProjects);
     }
+
+    // Function that verifies if the typed project title or description already exists in our database
     public function verifyAddProjectFields($title, $description){
         $projects = $this->projectManager->getProjects();
 
@@ -68,6 +77,8 @@ class ProjectsController {
     
         return $responseData;
     }
+
+    // Function that defines what's being ultimately done when the user tries to add a project
     public function AddProjectValidation(){
         $response = $this->verifyAddProjectFields(htmlspecialchars($_POST["title"]), htmlspecialchars($_POST["description"]));
 
@@ -90,6 +101,7 @@ class ProjectsController {
         echo json_encode($responseData);
     }
 
+    // Function that deletes a project
     public function deleteProject($id){
         $this->projectManager->deleteProjectDb($id);
 

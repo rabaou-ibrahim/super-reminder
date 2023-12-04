@@ -6,6 +6,7 @@ require_once "Project.php";
 class ProjectManager extends Model{
     private ?array $projects;
 
+    // Function that adds a project to our projects array
     public function addProject($project){
         $this->projects[] = $project;
     }

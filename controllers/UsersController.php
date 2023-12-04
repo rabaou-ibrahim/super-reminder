@@ -3,22 +3,34 @@
 require_once "./models/User/UserManager.php";
 class UsersController {
     private $userManager;
+
+    // Constructor that loads every user
     public function __construct(){
         $this->userManager = new UserManager;
         $this->userManager->loadUsers();
     }
+
+    // Function that displays the register view
     public function displayRegister(){
         require "views/user/register.view.php";
     }
+
+    // Function that displays the login view
     public function displayLogin(){
         require "views/user/login.view.php";
     }
+
+    // Function that displays the projects view
     public function displayProjects(){
         require_once "views/user/projects.view.php";
     }
+
+    // Function that displays the warning view
     public function displayWarning(){
         require "views/user/warning.view.php";
     }
+
+    // Function that defines what's being ultimately done when the user tries to register
     public function registerValidation() {
         $response = $this->verifyRegFields(htmlspecialchars($_POST['login']));
 
@@ -38,6 +50,7 @@ class UsersController {
         echo json_encode($responseData);
     }
 
+    // Function that verifies if the user exists in our database
     public function verifyRegFields($login) {
 
         $users = $this->userManager->getUsers();
@@ -76,7 +89,8 @@ class UsersController {
     
         return $responseData;
     }
-    
+
+    // Function that defines what's being ultimately done when the user tries to log in
     public function logInValidation(){
         $response = $this->verifyLogFields(htmlspecialchars($_POST['login']), htmlspecialchars($_POST['password']));
 
@@ -99,7 +113,7 @@ class UsersController {
         echo json_encode($responseLogData);
     }
     
-
+    // Function that verifies if the user exists in our database
     public function verifyLogFields($login, $password) {
         $users = $this->userManager->getUsers();
         $foundUser = null;
@@ -134,6 +148,7 @@ class UsersController {
         return $responseLogData;    
     }
    
+    // Function that logs out the user and destroys the session
     public function logOut(){
         session_start();
         session_destroy();

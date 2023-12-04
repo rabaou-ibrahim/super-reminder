@@ -6,6 +6,7 @@ require_once "User.php";
 class UserManager extends Model{
     private ?array $users;
 
+    // Function that adds a user to our users array
     public function addUser($user){
         $this->users[] = $user;
     }
