@@ -77,8 +77,8 @@ class ProjectManager extends Model{
             $this->addProject($project);
         }
     }
-    // Function that deletes a project in database and all the tasks within that project.
 
+    // Function that deletes a project in database and all the tasks within that project.
     public function deleteProjectDb($id){
         $query1 = "DELETE FROM project WHERE id = :id";
         $stmt = $this->getDb()->prepare($query1);
