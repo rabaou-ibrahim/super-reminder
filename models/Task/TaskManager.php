@@ -26,6 +26,7 @@ class TaskManager extends Model{
             $this->addTask($t);
         }
     }
+
     // Load User ToDos
     public function getTasksByUserId($id_user){
         $query = "SELECT * FROM task WHERE id_user = :id_user";
@@ -61,6 +62,7 @@ class TaskManager extends Model{
 
         return $myTasks;
     }
+
     // Get the tasks that have 'todo' status
     public function getTodoTasksByProjectId($id_project){
         $query = "SELECT * FROM task WHERE id_project = :id_project AND status = 'todo' ORDER BY `task`.`id` DESC";
@@ -73,6 +75,7 @@ class TaskManager extends Model{
 
         return $myTodoTasks;
     }
+
     // Get the tasks that have 'inprogress' status
     public function getInProgressTasksByProjectId($id_project){
         $query = "SELECT * FROM task WHERE id_project = :id_project AND status = 'inprogress' ORDER BY `task`.`id` DESC";
@@ -85,6 +88,7 @@ class TaskManager extends Model{
 
         return $myInProgressTasks;
     }
+
     // Get the tasks that have 'done' status
     public function getDoneTasksByProjectId($id_project){
         $query = "SELECT * FROM task WHERE id_project = :id_project AND status = 'done' ORDER BY `task`.`id` DESC";
@@ -131,7 +135,7 @@ class TaskManager extends Model{
         }
     }
 
-    // Changes a task status
+    // Changes a task status to 'inprogress'
     public function addProgressDb($id){
         $query = "UPDATE task SET status = 'inprogress' WHERE id = :id";
         $stmt = $this->getDb()->prepare($query);
@@ -147,7 +151,7 @@ class TaskManager extends Model{
         }
     }
 
-    // Changer le statut d'une tâche comme étant finie
+    // Changes a task status to done
     public function addDoneDb($id){
         $query = "UPDATE task SET status = 'done' WHERE id = :id";
         $stmt = $this->getDb()->prepare($query);

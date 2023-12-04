@@ -37,7 +37,7 @@ class UserManager extends Model{
         }
     }
 
-    // 
+    // Retreives a user by its login
     public function getUserByLogin($login) {
         foreach ($this->users as $user) {
             if ($user->getLogin() === $login) {
@@ -46,6 +46,8 @@ class UserManager extends Model{
         }
         return null; 
     }
+
+    // Function that registers a new user in our database
     public function registerDb($login, $lastname, $firstname, $password){
         $query = "INSERT INTO user (login, lastname, firstname, password) values (:login, :lastname, :firstname, :password)";
         $passwordhash = password_hash($password, PASSWORD_DEFAULT);

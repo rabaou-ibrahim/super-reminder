@@ -20,11 +20,11 @@ class Task {
     public function getId(): ?int {
         return $this->id;
     }
-
     public function setId(int $id): Task {
         $this->id = $id;
         return $this;
     }
+
     public function getTitle(): ?string {
         return $this->title;
     }
@@ -32,6 +32,7 @@ class Task {
         $this->title = $title;
         return $this;
     }
+
     public function getDescription(): ?string {
         return $this->description;
     }
@@ -39,6 +40,7 @@ class Task {
         $this->description = $description;
         return $this;
     }
+
     public function getProjectId(): ?int {
         return $this->id_project;
     }
@@ -46,6 +48,7 @@ class Task {
         $this->id_project = $id_project;
         return $this;
     }
+
     public function getUserId(): ?int {
         return $this->id_user;
     }
@@ -53,6 +56,7 @@ class Task {
         $this->id_user = $id_user;
         return $this;
     }
+    
     public function getStatus(): ?string {
         return $this->status;
     }
