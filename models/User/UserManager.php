@@ -27,6 +27,8 @@ class UserManager extends Model{
             $this->addUser($u);
         }
     }
+
+    // Function that returns a user by its id
     public function getUserbyId($id){
         for($i = 0; $i < count($this->users); $i++){
             if($this->users[$i]->getId() === $id){
@@ -34,16 +36,8 @@ class UserManager extends Model{
             }
         }
     }
-    
-    public function loadUserOccurences(){
-        $query = "SELECT COUNT(*) AS count FROM user";
-        $stmt = $this->getDb()->prepare($query);
-        $stmt->execute();
- 
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        $count = $result['count'];
-        return $count;
-     }
+
+    // 
     public function getUserByLogin($login) {
         foreach ($this->users as $user) {
             if ($user->getLogin() === $login) {
