@@ -16,27 +16,27 @@ class Project {
     public function getId(): ?int {
         return $this->id;
     }
-
     public function setId(int $id): Project {
         $this->id = $id;
         return $this;
     }
+
     public function getDescription(): ?string {
         return $this->description;
     }
-
     public function setDescription(string $description): Project {
         $this->title = $description;
         return $this;
     }
+
     public function getTitle(): ?string {
         return $this->title;
     }
-
     public function setTitle(string $title): Project {
         $this->title = $title;
         return $this;
     }
+    
     public function getUserId(): ?int {
         return $this->id_user;
     }
