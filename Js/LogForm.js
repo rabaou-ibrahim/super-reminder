@@ -18,7 +18,7 @@ form.addEventListener('submit', async (event) => {
     const response = await fetch('http://localhost/super-reminder/user/lv', {
         method: 'POST',
         body: new FormData(form)
-});
+    });
     if (!response.ok) {
         throw new Error('Network response was not OK');
     }
